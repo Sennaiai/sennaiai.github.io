@@ -2,7 +2,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit,unquote
-import hashlib,json,re,unittest
+import hashlib,json,re,unittest,statistics
 
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
@@ -29,11 +29,51 @@ class PortfolioTests(unittest.TestCase):
         cls.pages={p:Page(p.read_text()) for p in DIST.rglob('*.html')}
         cls.projects=json.loads((ROOT/'content/projects.json').read_text())
 
-    def test_two_requested_branches_and_six_existing_projects(self):
-        self.assertEqual(len(self.projects),6)
+    def test_three_branches_preserve_existing_projects_and_selected_additions(self):
+        self.assertEqual(len(self.projects),10)
         self.assertEqual(sum(p['branch']=='quantum' for p in self.projects),5)
         self.assertEqual(sum(p['branch']=='biology' for p in self.projects),1)
-        self.assertEqual({p['slug'] for p in self.projects},{'quantum-chemistry','admet','qft','qubo','grid-load','bioinformatics'})
+        self.assertEqual(sum(p['branch']=='classical' for p in self.projects),4)
+        self.assertEqual({p['slug'] for p in self.projects},{'quantum-chemistry','admet','qft','qubo','grid-load','bioinformatics','classical-learning','monte-carlo','multiobjective-optimization','fuzzy-allocation'})
+        mini=[p['slug'] for p in self.projects if p.get('display')=='mini']
+        self.assertEqual(mini,['fuzzy-allocation'])
+
+    def test_learning_reuse_and_third_branch_are_discoverable(self):
+        home=(DIST/'index.html').read_text()
+        self.assertIn('id="classical"',home)
+        self.assertIn('href="#classical"',home)
+        self.assertEqual(home.count('class="mini-study"'),1)
+        learning=(DIST/'projects/classical-learning.html').read_text()
+        for phrase in ('Ridge','random forest','gradient boosting','echo-state','logistic','ADMET','portable'):
+            self.assertIn(phrase,learning)
+        for related in ('admet.html','grid-load.html'):
+            self.assertIn(f'href="{related}"',learning)
+        for p in self.projects:
+            if p['branch']=='classical':
+                self.assertIn('href="../index.html#classical"',(DIST/'projects'/f"{p['slug']}.html").read_text())
+                self.assertLess(sum(len(p[k].split()) for k in ('motivation','implementation','result','limitation')),180)
+                self.assertNotRegex(p['outcome'],r'(?i)tests? pass|passing tests?|checks? pass')
+
+    def test_new_metrics_match_extracted_numerical_records(self):
+        evidence=ROOT/'content/evidence'
+        mc=json.loads((evidence/'monte-carlo.json').read_text())['records']
+        projects={p['slug']:p for p in self.projects}
+        for method in ('mc','scrambled_sobol'):
+            rows=[v for v in mc if v['method']==method]
+            self.assertEqual({v['seed'] for v in rows},{7,19,41,73})
+            self.assertTrue(all(v['total_payoff_evaluations']==131072 for v in rows))
+            rmse=statistics.mean(v['absolute_error']**2 for v in rows)**.5
+            self.assertIn(f'{rmse:.3g}',projects['monte-carlo']['outcome'])
+        unit=json.loads((evidence/'multiobjective.json').read_text())['records']
+        for method in ('mopso','qpso'):
+            rows=[v for v in unit if v['method']==method]
+            self.assertEqual(len(rows),5)
+            self.assertTrue(all(v['candidate_evaluations']==4530 and v['all_schedules_feasible'] for v in rows))
+            self.assertIn(f"{statistics.median(v['normalized_hypervolume'] for v in rows):.4f}",projects['multiobjective-optimization']['outcome'])
+        learning=json.loads((evidence/'classical-learning.json').read_text())
+        self.assertEqual(learning['test_targets'],2823)
+        self.assertIn(f"{learning['models']['gradient_boosting']['RMSE_MW']:.1f}",projects['classical-learning']['result'])
+        self.assertIn('no ADMET predictive accuracy',projects['classical-learning']['result'])
 
     def test_every_internal_link_asset_and_fragment_resolves(self):
         for path,page in self.pages.items():

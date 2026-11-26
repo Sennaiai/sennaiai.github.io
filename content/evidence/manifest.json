@@ -21,5 +21,32 @@
     "source_commit": "4bff5905af0ba6c77bce28f67ec51ec1f53bcb08",
     "source_sha256": "087f6a151f91bf98b7936739eca6058a45fd77ccdac0404a516caf9616bd489d",
     "extraction": "Selected summary fields; full study remains in the linked research repository."
+  },
+  {
+    "file": "monte-carlo.json",
+    "repository": "https://github.com/Sennaiai/Classical-Optimization-and-Learning",
+    "repository_path": "projects/learning/monte_carlo_estimation/results/results.json",
+    "source_commit": "c8dd739cfc749e31c4e87117719986113d64d589",
+    "source_sha256": "a8844033a491b5cfd6589098c6c44e31b056fa3bf844e06d7f19ab796b496447",
+    "sha256": "f258a2597ff760e596253f6aaf3677fed7c206689e86c1842babc4bfbe11eee6",
+    "extraction": "At-the-money, largest-budget Monte Carlo and Sobol records; all four outer seeds retained."
+  },
+  {
+    "file": "multiobjective.json",
+    "repository": "https://github.com/Sennaiai/Classical-Optimization-and-Learning",
+    "repository_path": "projects/optimization/unit_commitment/results/results.json",
+    "source_commit": "c8dd739cfc749e31c4e87117719986113d64d589",
+    "source_sha256": "fda54bcafc7d31091ec76f24c4108e12477a749b7ecac600c40f5aabedc1ba5e",
+    "sha256": "0d349113951654c72cbb5451cd21dd5c71ac2e477c2225c65b8ad7aa72e440b8",
+    "extraction": "All ten method/seed hypervolume and feasibility records; complete fronts remain in the source study."
+  },
+  {
+    "file": "classical-learning.json",
+    "repository": "https://github.com/Sennaiai/Quantum-Computing",
+    "repository_path": "projects/Grid Load QRC Benchmarks/results/cv.json",
+    "source_commit": "0d46844512561078eac5d6a391d8c3a7d0a8187a",
+    "source_sha256": "d2c92d24cfcabd07dd64550caf496dbefc90856e818ee90c9d1a231c29968d0d",
+    "sha256": "d7068697f78543ff835a54bdaf3d3cbc7f54321672faa475025734663742b907",
+    "extraction": "Classical forecasting controls only; values independently reproduced by the extracted standalone forecasting CLI."
   }
 ]

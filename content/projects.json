@@ -136,5 +136,107 @@
     "figure": null,
     "alt": "",
     "caption": ""
+  },
+  {
+    "slug": "classical-learning",
+    "branch": "classical",
+    "label": "Reusable classical learning",
+    "title": "Learning models that connect the studies",
+    "teaser": "Independent forecasting and molecular-classification APIs supporting grid benchmarking and ADMET.",
+    "tags": [
+      "scikit-learn",
+      "Time-series validation",
+      "Molecular learning"
+    ],
+    "outcome": "Reusable Python models with explicit data and evaluation contracts.",
+    "motivation": "Classical comparisons need reusable implementations with consistent fitting, evaluation and inference.",
+    "implementation": "Ridge, random forest, gradient boosting and echo-state reservoirs support the grid study. Full- and selected-count logistic classifiers support molecular ADMET learning. The extracted modules expose training, prediction, chronological or scaffold-separated evaluation, and portable molecular-model inference.",
+    "result": "The standalone forecasting run reproduces 324.3 MW test RMSE for gradient boosting on 2,823 targets. Molecular tests verify preprocessing, partition separation and portable inference; no ADMET predictive accuracy is claimed.",
+    "limitation": "Forecasting uses one historical geographic series. Molecular callers supply prepared features and scaffold keys; correct upstream preprocessing remains essential. These are the classical controls from the linked studies, packaged for independent reuse.",
+    "note": "Reusable modules support the existing grid and ADMET projects. Their source provenance and original collaboration credits are retained.",
+    "related": [
+      {
+        "label": "ADMET study",
+        "href": "admet.html"
+      },
+      {
+        "label": "Grid benchmarking study",
+        "href": "grid-load.html"
+      }
+    ],
+    "source": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/learning",
+    "evidence": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/tests",
+    "figure": null,
+    "alt": "",
+    "caption": ""
+  },
+  {
+    "slug": "monte-carlo",
+    "branch": "classical",
+    "label": "Monte Carlo estimation",
+    "title": "Accuracy under a fixed sampling budget",
+    "teaser": "Compare Monte Carlo and randomized quasi-Monte Carlo for European option pricing.",
+    "tags": [
+      "Monte Carlo",
+      "Variance reduction",
+      "Uncertainty estimation"
+    ],
+    "outcome": "At-the-money RMSE: 0.000459 Sobol; 0.0332 Monte Carlo.",
+    "motivation": "How much estimator error remains when every method receives the same number of payoff evaluations?",
+    "implementation": "Plain Monte Carlo, antithetic normals and scrambled Sobol/Halton sequences estimate discounted European-call payoffs. Three synthetic contracts, four budgets, four outer seeds and sixteen independent replications are checked against Black–Scholes.",
+    "result": "At 131,072 payoff evaluations per estimate, at-the-money price RMSE across four seeds is 0.000459 for Sobol and 0.0332 for plain Monte Carlo. Antithetic pairs count as two evaluations.",
+    "limitation": "Results concern one-dimensional, constant-volatility risk-neutral GBM with zero dividends. Replication-based intervals are approximate. These observations do not establish general pricing superiority or market-prediction accuracy.",
+    "note": "RMSE is measured in option-price units across four retained seeds. This is numerical estimation, not a trained predictive model.",
+    "source": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/learning/monte_carlo_estimation",
+    "evidence": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/learning/monte_carlo_estimation/results",
+    "figure": "classical-monte-carlo.svg",
+    "alt": "Saved option-price estimation RMSE across four seeds versus equal total payoff budgets for Monte Carlo, antithetic, scrambled Sobol and Halton methods.",
+    "caption": "Matched sampling budgets for three synthetic contracts. Curves show observed error, not a guaranteed convergence rate."
+  },
+  {
+    "slug": "multiobjective-optimization",
+    "branch": "classical",
+    "label": "Multiobjective optimization",
+    "title": "Cost–emissions tradeoffs with an exact reference",
+    "teaser": "Compare MOPSO and classical QPSO on a constrained unit-commitment model.",
+    "tags": [
+      "MOPSO / QPSO",
+      "Pareto optimization",
+      "MILP reference"
+    ],
+    "outcome": "Median normalized hypervolume: 0.7020 MOPSO; 0.6758 QPSO.",
+    "motivation": "Can population-based methods recover cost–emissions tradeoffs while preserving feasible generation schedules?",
+    "implementation": "Two generators meet four hourly demands with explicit commitment, startup and output constraints. Both methods use 4,530 candidates per run and five fixed seeds. An analytic Pareto line and seventeen independent HiGHS MILPs provide references.",
+    "result": "Median normalized dominated hypervolume is 0.7020 for MOPSO and 0.6758 for QPSO, against 0.71 for the continuous reference front. Every retained schedule passes the independent feasibility audit.",
+    "limitation": "The synthetic model excludes ramping, minimum up/down times, reserves and network constraints. Hypervolume depends on the declared normalization and reference point. QPSO executes classically; this small study does not establish universal optimizer rankings.",
+    "note": "Hypervolume measures tradeoff coverage, not an allocation percentage. Quantum-inspired QPSO does not use a quantum backend.",
+    "source": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/optimization/unit_commitment",
+    "evidence": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/optimization/unit_commitment/results",
+    "figure": "classical-pareto.svg",
+    "alt": "MOPSO and QPSO fronts compared with the exact cost-emissions Pareto line and convergence of normalized dominated hypervolume.",
+    "caption": "Fixed budgets and seeds; convergence bands span the observed seed range."
+  },
+  {
+    "slug": "fuzzy-allocation",
+    "branch": "classical",
+    "display": "mini",
+    "label": "Supporting study",
+    "title": "Fuzzy resource allocation",
+    "teaser": "Robust production decisions under triangular profit and resource uncertainty.",
+    "tags": [
+      "Alpha cuts",
+      "Linear programming"
+    ],
+    "outcome": "An uncertainty-aware allocation model with an independent LP reference.",
+    "motivation": "Allocate limited factory resources when profits and available quantities are uncertain.",
+    "implementation": "Alpha-cut linear programs compare robust, nominal, optimistic and original policies. Independent feasible-vertex enumeration checks the HiGHS solutions.",
+    "result": "Robust objective profit increases from 90.45 to 105.0 as alpha goes from zero to one; all thirty-six cases match the independent objective reference.",
+    "limitation": "Synthetic two-product model. Alpha denotes fuzzy membership, not probability; policy objectives use different coefficients.",
+    "note": "A small supporting uncertainty study; no carbon-storage or probabilistic-confidence claim.",
+    "source": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/optimization/fuzzy_allocation",
+    "evidence": "https://github.com/Sennaiai/Classical-Optimization-and-Learning/tree/main/projects/optimization/fuzzy_allocation/results",
+    "figure": null,
+    "alt": "",
+    "caption": ""
   }
 ]

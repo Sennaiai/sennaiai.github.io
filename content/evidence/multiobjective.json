@@ -1,0 +1,88 @@
+{
+  "normalization": {
+    "ideal": [
+      6910.0,
+      75.5
+    ],
+    "nadir": [
+      12310.0,
+      291.5
+    ],
+    "hypervolume_reference_point": [
+      1.1,
+      1.1
+    ]
+  },
+  "records": [
+    {
+      "method": "mopso",
+      "seed": 0,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.7020313259108156,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "qpso",
+      "seed": 0,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.6727269607646524,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "mopso",
+      "seed": 1,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.7020043037694306,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "qpso",
+      "seed": 1,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.6768282442027914,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "mopso",
+      "seed": 7,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.7019358669710779,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "qpso",
+      "seed": 7,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.6839831556885551,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "mopso",
+      "seed": 19,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.7019971376176447,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "qpso",
+      "seed": 19,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.675782519076507,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "mopso",
+      "seed": 41,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.7019811413983907,
+      "all_schedules_feasible": true
+    },
+    {
+      "method": "qpso",
+      "seed": 41,
+      "candidate_evaluations": 4530,
+      "normalized_hypervolume": 0.6697229111740063,
+      "all_schedules_feasible": true
+    }
+  ]
+}
