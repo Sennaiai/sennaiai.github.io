@@ -91,6 +91,14 @@ class PortfolioTests(unittest.TestCase):
             if r['distance_angstrom'] in (.5,.74,1.5,3.):
                 self.assertIn(f"{r['fci_hartree']:.6f}",svg)
 
+    def test_public_source_is_small_and_has_no_hosting_metadata(self):
+        self.assertFalse((ROOT/'.openai').exists())
+        for path in (ROOT/'content/evidence').glob('*.json'):
+            self.assertLess(path.stat().st_size,100_000)
+        for path in DIST.rglob('*'):
+            if path.suffix in ('.html','.svg','.css'):
+                self.assertNotIn('chatgpt',path.read_text().lower())
+
     def test_key_results_match_repository_evidence(self):
         q=ROOT/'content/evidence'
         for item in json.loads((q/'manifest.json').read_text()):

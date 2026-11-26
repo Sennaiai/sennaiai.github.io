@@ -3,18 +3,23 @@
     "file": "h2.json",
     "repository_path": "projects/Quanutm Chemistry /benchmarks/h2/results.json",
     "sha256": "56771b013ac70603d8302819f468347e99ec23fc1e6a0f912457501ec114e7c5",
-    "source_commit": "a4a097940436deefde8ada766e590e5ea9df29ed"
+    "source_commit": "4bff5905af0ba6c77bce28f67ec51ec1f53bcb08",
+    "source_sha256": "56771b013ac70603d8302819f468347e99ec23fc1e6a0f912457501ec114e7c5"
   },
   {
     "file": "hcn.json",
     "repository_path": "projects/Quanutm Chemistry /benchmarks/hcn/results.json",
-    "sha256": "38062667f4269b3ff654b52ea8286b218bc9ee1048e3ce4240a5839349125f53",
-    "source_commit": "a4a097940436deefde8ada766e590e5ea9df29ed"
+    "sha256": "d055419046e47749f57427aead0bc9396d32a21a30e3c8c26c03fc074a28e721",
+    "source_commit": "4bff5905af0ba6c77bce28f67ec51ec1f53bcb08",
+    "source_sha256": "38062667f4269b3ff654b52ea8286b218bc9ee1048e3ce4240a5839349125f53",
+    "extraction": "Seeded run accuracy fields; full study remains in the linked research repository."
   },
   {
     "file": "qaoa.json",
     "repository_path": "projects/QUBO IROPS solver/qaoa/expanded/results/expanded_results.json",
-    "sha256": "087f6a151f91bf98b7936739eca6058a45fd77ccdac0404a516caf9616bd489d",
-    "source_commit": "a4a097940436deefde8ada766e590e5ea9df29ed"
+    "sha256": "88b8758999bc88529e5ee07ae9e190f070ac3f6ff946709222f264db662de4dc",
+    "source_commit": "4bff5905af0ba6c77bce28f67ec51ec1f53bcb08",
+    "source_sha256": "087f6a151f91bf98b7936739eca6058a45fd77ccdac0404a516caf9616bd489d",
+    "extraction": "Selected summary fields; full study remains in the linked research repository."
   }
 ]
