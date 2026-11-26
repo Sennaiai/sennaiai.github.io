@@ -77,9 +77,12 @@ class PortfolioTests(unittest.TestCase):
             self.assertNotIn(removed,home)
         self.assertNotIn('I use frontier AI tools',home)
         self.assertNotIn('medium.com',home)
+        self.assertNotIn('9 passing synthetic tests',home)
+        biology=next(p for p in self.projects if p['slug']=='bioinformatics')
+        self.assertNotRegex(biology['outcome'],r'\d|accuracy|F1|AUC')
         self.assertIn('324.3 MW RMSE',home)
         self.assertIn('≈351.0 MW',home)
-        for metric in ('1.7 × 10⁻⁹ Ha','7 bond lengths','1,965 labelled molecules prepared','15 with gate-built arithmetic; 21 with a compiled oracle','61.29% of passengers','9 passing synthetic tests for genomic workflow components'):
+        for metric in ('1.7 × 10⁻⁹ Ha','7 bond lengths','1,965 labelled molecules prepared','15 with gate-built arithmetic; 21 with a compiled oracle','61.29% of passengers'):
             self.assertIn(metric,home)
         for project in self.projects:
             for key in ('source','evidence'):

@@ -65,7 +65,7 @@ dict(slug='grid-load',branch='quantum',label='Electricity-grid forecasting',titl
      caption='Saved benchmark. Demand data: National Energy SO, NESO Open Licence. Original collaboration is credited in the project guide.'),
 dict(slug='bioinformatics',branch='biology',label='Bioinformatics',title='A modular genomic-ancestry workflow',
      teaser='Connect contamination estimates, principal components and reference-population assignment in Snakemake.',
-     tags=['Snakemake','VerifyBamID2','PCA / KNN'],outcome='9 passing synthetic tests for genomic workflow components.',
+     tags=['Snakemake','VerifyBamID2','PCA / KNN'],outcome='A modular workflow for genomic quality control and population assignment.',
      motivation='Make ancestry-related quality control and population assignment inspectable as one modular workflow, with explicit reference resources and sample alignment.',
      implementation='The workflow connects GRCh38 preparation and VerifyBamID2 outputs to contamination tables, harmonized principal components, a four-PC K-nearest-neighbor classifier and PCA visualizations. Python tests cover table alignment, PC-column parsing and a small synthetic assignment case.',
      result='The repository implements the processing stages and synthetic reference tests. Its outputs are contamination summaries, aligned PC tables, population-label tables and plots. No cohort-level accuracy or benchmark measurements are published here.',
