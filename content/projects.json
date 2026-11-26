@@ -10,7 +10,7 @@
       "PySCF",
       "VQE"
     ],
-    "outcome": "Three studies. Matched classical references.",
+    "outcome": "H₂: |VQE − FCI| < 1.7 × 10⁻⁹ Ha across 7 bond lengths.",
     "motivation": "A low variational energy alone does not establish a correct molecular simulation. These studies ask how the Hamiltonian, solver, basis and active space each affect the result.",
     "implementation": "H₂ bond scans, an eight-qubit HCN π-active-space VQE study, and nested active-space benchmarks for NH₃, H₂CO₃ and HCO₃⁻. The notebooks expose molecular integrals, fermionic assembly, Jordan–Wigner mapping, state preparation and physical-sector checks. RHF, PBE, FCI and CASCI provide explicitly scoped references.",
     "result": "Across seven STO-3G H₂ bond lengths, the saved VQE energies differ from FCI by less than 1.7 × 10⁻⁹ Ha. All nine seeded HCN runs meet the recorded active-space energy target. The scaling study compares 4-, 8- and 12-qubit spaces against the same orbital-basis references.",
@@ -33,7 +33,7 @@
       "Counterdiabatic control",
       "QSVT"
     ],
-    "outcome": "Offline validation. Private execution confirmed.",
+    "outcome": "1,965 labelled molecules prepared; private execution confirmed.",
     "motivation": "A quantum molecular-learning pipeline needs consistent data fitting, Hamiltonian construction, circuit approximation and measurement contracts before its predictive results can be interpreted.",
     "implementation": "I developed the reusable library underpinning this pipeline. Morgan count fingerprints feed information-screened Ising interactions and molecule-specific counterdiabatic controls. Heralded cosine/sine QSVT branches, direct-exponential references and runtime/result bindings are checked independently. Scaffold-separated classical controls and a post-measurement logistic readout complete the disclosed workflow.",
     "result": "The supervised preparation retains 1,965 labelled molecular identities and all 1,975 valid structures for measurement or prediction. The author confirms successful private compilation and execution through Horizon Quantum’s Triple Alpha workflow; proprietary outputs remain confidential. Public checks reproduce the disclosed offline pipeline.",
@@ -56,7 +56,7 @@
       "PennyLane",
       "Reversible arithmetic"
     ],
-    "outcome": "Cross-framework arithmetic. Explicit oracle limits.",
+    "outcome": "Factors 15 with gate-built arithmetic; 21 with a compiled oracle.",
     "motivation": "Correct basis-state probabilities can conceal incorrect controlled phases. The study tests whether Fourier arithmetic and phase estimation implement the intended coherent transformations.",
     "implementation": "Qiskit and PennyLane share a checked QFT convention. Independent Fourier matrices, FFT states and arithmetic references test addition, multiplication, exponentiation and clean workspace. Continued-fraction candidates are validated modularly without a blind classical order-search fallback.",
     "result": "Gate-built QFT modular arithmetic factors 15. A separately labelled compiled-permutation oracle factors 21. The order-6, base-5 example modulo 21 is retained as a negative control because it fails factor extraction despite finding a valid order.",
@@ -79,7 +79,7 @@
       "Simulated annealing",
       "QAOA"
     ],
-    "outcome": "72.19% of bookings reallocated by the classical hybrid.",
+    "outcome": "Mean allocation: 72.19% of bookings; 61.29% of passengers.",
     "motivation": "Recover disrupted bookings while respecting shared seat inventory and an explicit service-cost objective. A quantum extension is evaluated against the same local QUBOs, rather than credited with the classical pipeline’s allocation rate.",
     "implementation": "A whole-booking capacity-slack QUBO, classical simulated annealing, route expansion and audited local improvement act on 7,653 PNRs (booking groups) and 11,822 passengers. QAOA compares structurally selected neighborhoods, one-choice mixers, exact local references and globally checked patch admission.",
     "result": "The expanded classical hybrid reallocates 72.19% of PNRs and 61.29% of passengers, averaged across five seeds. In the larger local study, depth-4 QAOA samples the exact S3 optimum in 13 of 18 runs, versus annealing’s 14. QAOA adds zero bookings or passengers; exact enumeration confirms local allocation saturation.",
@@ -125,7 +125,7 @@
       "VerifyBamID2",
       "PCA / KNN"
     ],
-    "outcome": "Implemented workflow with synthetic reference tests.",
+    "outcome": "9 passing synthetic tests for genomic workflow components.",
     "motivation": "Make ancestry-related quality control and population assignment inspectable as one modular workflow, with explicit reference resources and sample alignment.",
     "implementation": "The workflow connects GRCh38 preparation and VerifyBamID2 outputs to contamination tables, harmonized principal components, a four-PC K-nearest-neighbor classifier and PCA visualizations. Python tests cover table alignment, PC-column parsing and a small synthetic assignment case.",
     "result": "The repository implements the processing stages and synthetic reference tests. Its outputs are contamination summaries, aligned PC tables, population-label tables and plots. No cohort-level accuracy or benchmark measurements are published here.",
