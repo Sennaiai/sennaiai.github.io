@@ -128,9 +128,8 @@ class PortfolioTests(unittest.TestCase):
             for key in ('source','evidence'):
                 self.assertEqual(urlsplit(project[key]).hostname,'github.com')
         admet=(DIST/'projects/admet.html').read_text()
-        self.assertIn('simulation library',admet)
-        self.assertIn('in collaboration with colleagues',admet)
-        self.assertIn('I developed the ADMET application',admet)
+        self.assertIn('I developed the ADMET application and, in collaboration with colleagues, the reusable Triple Alpha/Beryllium simulation library.',admet)
+        self.assertIn('ADMET application developed by Senay Kahsay; reusable simulation library co-developed with colleagues.',admet)
         svg=(DIST/'assets/research-sketch.svg').read_text()
         self.assertNotIn('GENOMIC DATA',svg)
         for r in json.loads((ROOT/'content/evidence/h2.json').read_text())['scan']:
@@ -157,7 +156,7 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('Existing synthetic tests do not validate',bio)
         self.assertNotRegex((DIST/'projects/qubo.html').read_text(),r'\bS3\b')
         for p in self.projects:
-            self.assertNotRegex(p['teaser'],r'^(Construct|Connect|Use|Measure|Compare|Benchmark|Make|Recover|Allocate|Evaluate)\b')
+            self.assertRegex(p['teaser'],r'^(Constructed|Developed|Implemented|Measured|Benchmarked|Connected|Compared|Evaluated)\b')
 
     def test_public_source_is_small_and_has_no_hosting_metadata(self):
         self.assertFalse((ROOT/'.openai').exists())
