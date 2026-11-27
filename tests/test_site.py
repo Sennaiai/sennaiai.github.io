@@ -104,7 +104,7 @@ class PortfolioTests(unittest.TestCase):
         text='\n'.join(p.read_text() for p in DIST.rglob('*.html'))
         for forbidden in ('HGDP00082','HGDP00450','/Users/','/private/tmp/','TRIPLE_ALPHA_API_KEY','sk-proj-','candidate @','coming soon','TODO','codex-preview'):
             self.assertNotIn(forbidden,text)
-        self.assertIn('author-confirmed',text)
+        self.assertIn('author-confirmed',text.lower())
         self.assertIn('No cohort-level accuracy',text)
         self.assertIn('not an electronic-structure Hamiltonian',text)
         self.assertIn('not full-population reallocation rates',text)
@@ -128,13 +128,36 @@ class PortfolioTests(unittest.TestCase):
             for key in ('source','evidence'):
                 self.assertEqual(urlsplit(project[key]).hostname,'github.com')
         admet=(DIST/'projects/admet.html').read_text()
-        self.assertIn('reusable library',admet)
-        self.assertIn('Kahsay et al.',admet)
+        self.assertIn('simulation library',admet)
+        self.assertIn('in collaboration with colleagues',admet)
+        self.assertIn('I developed the ADMET application',admet)
         svg=(DIST/'assets/research-sketch.svg').read_text()
         self.assertNotIn('GENOMIC DATA',svg)
         for r in json.loads((ROOT/'content/evidence/h2.json').read_text())['scan']:
             if r['distance_angstrom'] in (.5,.74,1.5,3.):
                 self.assertIn(f"{r['fci_hartree']:.6f}",svg)
+
+    def test_requested_layout_and_collaboration_contracts(self):
+        home=(DIST/'index.html').read_text()
+        self.assertLess(home.index('class="hero shell"'),home.index('id="about"'))
+        self.assertLess(home.index('id="about"'),home.index('id="work"'))
+        self.assertLess(home.index('id="work"'),home.index('id="contact"'))
+        figure=re.search(r'<figure class="hero-figure">(.*?)</figure>',home,re.S).group(1)
+        self.assertLess(figure.index('Algorithm development:'),figure.index('Frontier AI development'))
+        self.assertEqual(home.count('Frontier AI development and productivity tools.'),1)
+        self.assertIn('At Horizon Quantum, I worked on a quantum pipeline for modeling drug properties and tested its circuits against exact numerical calculations.',home)
+        for slug in ('admet','grid-load'):
+            text=(DIST/'projects'/f'{slug}.html').read_text()
+            self.assertIn('<strong>Collaboration</strong>',text)
+            self.assertIn('Full contribution credits are retained in the repository.',text)
+            self.assertNotIn('<strong>Evidence boundary</strong>',text)
+        for slug in ('bioinformatics','classical-learning'):
+            self.assertNotIn('class="study-note"',(DIST/'projects'/f'{slug}.html').read_text())
+        bio=(DIST/'projects/bioinformatics.html').read_text()
+        self.assertNotIn('Existing synthetic tests do not validate',bio)
+        self.assertNotRegex((DIST/'projects/qubo.html').read_text(),r'\bS3\b')
+        for p in self.projects:
+            self.assertNotRegex(p['teaser'],r'^(Construct|Connect|Use|Measure|Compare|Benchmark|Make|Recover|Allocate|Evaluate)\b')
 
     def test_public_source_is_small_and_has_no_hosting_metadata(self):
         self.assertFalse((ROOT/'.openai').exists())
